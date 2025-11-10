@@ -167,6 +167,9 @@ export class IdentityStorageManager {
    * @returns {Promise<UTXOReference[]>} - Returns matching UTXO references
    */
   async findByCertificateSerialNumber(serialNumber: Base64String): Promise<UTXOReference[]> {
+
+    console.log("SERIAL NUMBER:", serialNumber)
+    
     // Validate the serial number parameter
     if (serialNumber === undefined || serialNumber === '') {
       return []
@@ -177,6 +180,8 @@ export class IdentityStorageManager {
     const query = {
       'certificate.serialNumber': serialNumber
     }
+
+    console.log("QUERY:", query)
 
     // Find matching results from the DB
     return await this.findRecordWithQuery(query)
